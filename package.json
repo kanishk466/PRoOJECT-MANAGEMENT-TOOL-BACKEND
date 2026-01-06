@@ -5,11 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-     "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate deploy",
-    "build": "npm install && npm run prisma:generate && npm run prisma:migrate"
-  
+    "seed": "node prisma/seed.js"
   },
   "keywords": [],
   "author": "",
@@ -33,4 +33,3 @@
     "nodemon": "^3.1.11"
   }
 }
-
