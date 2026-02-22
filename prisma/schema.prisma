@@ -68,6 +68,9 @@ model Ticket {
   sprintId    Int?
   sprint      Sprint?         @relation(fields: [sprintId], references: [id])
 
+  testCases TestCase[]
+  aiTestGenerated Boolean @default(false)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -147,4 +150,31 @@ model Sprint {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+
+
+enum TestCaseType {
+  POSITIVE
+  NEGATIVE
+  EDGE
+}
+
+model TestCase {
+  id            Int           @id @default(autoincrement())
+  ticketId      Int
+  title         String
+  type          TestCaseType
+  preconditions Json
+  steps         Json
+  expectedResult String
+  priority      Priority
+  aiGenerated   Boolean       @default(true)
+
+  ticket Ticket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([ticketId,title])
 }
