@@ -4,7 +4,7 @@ import ticketRoutes from "./modules/tickets/ticket.routes.js";
 import commentRoutes from "./modules/comments/comment.routes.js";
 
 import spintsRoutes from "./modules/sprints/sprints.route.js"
-
+import testCaseRoutes from "./modules/ai/testCase.routes.js";
 
 const router = express.Router();
 
@@ -16,6 +16,8 @@ router.use("/", commentRoutes);
 
 router.use("/" , spintsRoutes)
 
+router.use("/" , testCaseRoutes)
 
 
 export default router;
+
